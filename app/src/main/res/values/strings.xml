@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Get Motivated</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="question_text">How much motivation do you need right now?</string>
+    <string name="easy_button_text">A Little Nudge</string>
+    <string name="medium_button_text">A Good Push</string>
+    <string name="hard_button_text">I\'m About To Give Up</string>
+    <string name="volume_text">(Don\'t forget to turn up your volume!)</string>
+</resources>
