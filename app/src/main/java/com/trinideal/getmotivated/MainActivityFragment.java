@@ -1,20 +1,28 @@
 package com.trinideal.getmotivated;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import junit.framework.Assert;
+
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+    private static final String TAG = "MainActivityFragment";
     private AudioPlayer mPlayer = new AudioPlayer();
     private Button mEasyButton;
     private Button mMediumButton;
@@ -61,6 +69,8 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
+        getAllFilesInAssetByExtension(getActivity(), "test", ".mp3");
+
 
 
         return v;
@@ -75,6 +85,33 @@ public class MainActivityFragment extends Fragment {
 
     private void playRandom(int[] array) {
         mPlayer.play(getActivity(), array[(int) (Math.random() * array.length)]);
+    }
+
+    public static String[] getAllFilesInAssetByExtension(Context context, String path, String extension){
+        Assert.assertNotNull(context);
+
+        try {
+            String[] files = context.getAssets().list(path);
+
+            if(TextUtils.isEmpty(extension)){
+                return files;
+            }
+
+            List<String> filesWithExtension = new ArrayList<String>();
+
+            for(String file : files){
+                if(file.endsWith(extension)){
+                    Log.d(TAG, file);
+                    filesWithExtension.add(file);
+                }
+            }
+
+            return filesWithExtension.toArray(new String[filesWithExtension.size()]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 
