@@ -8,15 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class MainActivityFragment extends Fragment {
     private static final String TAG = "MainActivityFragment";
     private RandomPlayer mPlayer = new RandomPlayer();
     private Button mEasyButton;
     private Button mMediumButton;
     private Button mHardButton;
+    private Button mStopButton;
 
     public MainActivityFragment() {
     }
@@ -36,7 +35,7 @@ public class MainActivityFragment extends Fragment {
         mEasyButton = (Button) v.findViewById(R.id.easyButton);
         mEasyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                playRandom("test");
+                playRandom("EASY");
             }
         });
 
@@ -44,7 +43,7 @@ public class MainActivityFragment extends Fragment {
         mMediumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playRandom("test");
+                playRandom("MEDIUM");
             }
         });
 
@@ -52,7 +51,15 @@ public class MainActivityFragment extends Fragment {
         mHardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playRandom("test");
+                playRandom("HARD");
+            }
+        });
+
+        mStopButton = (Button) v.findViewById(R.id.stopButton);
+        mStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPlayer.stop();
             }
         });
 
@@ -63,8 +70,8 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public void onStop() {
-        super.onStop();
         mPlayer.stop();
+        super.onStop();
     }
 
     private void playRandom(String folder) {

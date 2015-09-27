@@ -12,11 +12,14 @@ import junit.framework.Assert;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class RandomPlayer {
 
     private MediaPlayer mPlayer;
+    private ArrayList<String> mAlreadyPlayed = new ArrayList<String>();
 
     public void stop() {
         if (mPlayer != null) {
@@ -54,10 +57,27 @@ public class RandomPlayer {
     private String getRandomSound(Context context, String path) {
 
         try {
-            String[] files = context.getAssets().list(path);
-            if (files.length == 0)
-                return null;
-            String file =  files[(int) (Math.random() * files.length)];
+            ArrayList<String> files = new ArrayList<String>(Arrays.asList
+                    (context.getAssets().list(path)));
+
+            if (files.isEmpty())
+                    return null;
+
+            for (final Iterator iterator = files.iterator(); iterator.hasNext();) {
+                // Remove all sounds already played
+                String str = (String) iterator.next();
+                if (mAlreadyPlayed.contains(str))
+                        iterator.remove();
+            }
+
+            // if everything has been played, clear the alreadyplayed list
+            // and rerun the function, repopulating the file list
+            if (files.size() == 1) {
+                mAlreadyPlayed.clear();
+            }
+
+            String file =  files.get((int) (Math.random() * files.size()));
+            mAlreadyPlayed.add(file);
             return file;
 
         } catch (IOException e) {
@@ -65,6 +85,7 @@ public class RandomPlayer {
         }
 
         return null;
+
     }
 
 

@@ -11,19 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Get Motivated"
-        android:id="@+id/textView3"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#ffffffff"
-        android:layout_margin="10dp"
-        android:textSize="30sp"
-        android:textStyle="normal|bold"
-        android:typeface="sans" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/question_text"
         android:id="@+id/textView"
         android:gravity="center"
@@ -62,6 +49,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stop_button_text"
+        android:id="@+id/stopButton"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/stop_button_shape" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +65,9 @@
         android:text="@string/volume_text"
         android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" /><![CDATA[
+        android:layout_marginTop="20dp"
+        android:textStyle="normal"
+        android:textSize="15sp" /><![CDATA[
 
     " />
 ]]>
